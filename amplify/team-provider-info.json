@@ -23,6 +23,9 @@
           "appId": "d1rt6dm0drdz18",
           "type": "cicd"
         }
+      },
+      "storage": {
+        "s301d833e2": {}
       }
     }
   }
