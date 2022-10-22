@@ -2,6 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const PostCard = ({ post }) => {
+  if(!post) {
+    return <></>
+  }
+
   return (
     <Link href={`/posts/${post.id}`}>
       <a className="hover:underline hover:bg-gray-800 duration-300">
