@@ -1,7 +1,6 @@
 import { Amplify, API, Auth, withSSRContext } from "aws-amplify";
 import awsExports from "../src/aws-exports";
 import { listPosts } from "../src/graphql/queries";
-import styles from "../styles/Home.module.css";
 import PostCard from "./components/PostCard";
 
 Amplify.configure({ ...awsExports, ssr: true });
