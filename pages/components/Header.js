@@ -9,7 +9,7 @@ const Header = () => {
           <Link href="/">
             <a className="mr-5 hover:text-gray-400">Home</a>
           </Link>
-          <Link href="/post/create">
+          <Link href="/posts/create">
             <a className="mr-5 hover:text-gray-400">
               新規作成
             </a>
