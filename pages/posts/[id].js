@@ -76,7 +76,7 @@ export default function Post({ post, content }) {
   }
 
   return (
-    <div className={styles.container}>
+    <div className="prose dark:prose-invert prose-lg max-w-none">
       <Head>
         <title>{post.title} – Amplify + Next.js</title>
         <link rel="icon" href="/favicon.ico" />
