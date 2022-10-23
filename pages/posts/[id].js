@@ -1,4 +1,4 @@
-import { Amplify, API, withSSRContext } from "aws-amplify";
+import { Amplify, API, Storage, withSSRContext } from "aws-amplify";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import awsExports from "../../src/aws-exports";
@@ -9,6 +9,8 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -50,6 +52,19 @@ export async function getStaticProps({ params }) {
 export default function Post({ post, content }) {
   const router = useRouter();
 
+  const [image, setImage] = useState({});
+
+  useEffect(() => {
+    if (!post.image) {
+      return;
+    }
+    const getImage = async () => {
+      const result = await Storage.get(post.image);
+      setImage(result);
+    };
+    getImage();
+  }, []);
+
   if (router.isFallback) {
     return (
       <div className={styles.container}>
@@ -77,20 +92,20 @@ export default function Post({ post, content }) {
 
   return (
     <div className="prose dark:prose-invert prose-lg max-w-none">
-      <Head>
-        <title>{post.title} – Amplify + Next.js</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <div className="border">
+        <Image
+          src={image ?? "/noimage.png"}
+          width={1200}
+          height={700}
+          alt={post.title}
+        />
+      </div>
+      <h1 className="mt-12">{post.title}</h1>
+      <p>作成日：{post.createdAt}</p>
+      <p>更新日：{post.updatedAt}</p>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>{post.title}</h1>
-
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
-      </main>
-
-      <footer className={styles.footer}>
-        <button onClick={handleDelete}>💥 Delete post</button>
-      </footer>
+      <div dangerouslySetInnerHTML={{ __html: content }}></div>
+      <button onClick={handleDelete}>💥 Delete post</button>
     </div>
   );
 }
