@@ -1,17 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
-const PostCard = ({ post }) => {
-  if(!post) {
-    return <></>
-  }
-
+const PostCard = ({ post, image }) => {
   return (
     <Link href={`/posts/${post.id}`}>
       <a className="hover:underline hover:bg-gray-800 duration-300">
         <div className="border rounded-lg">
           <Image
-            src={`/${post.image}`}
+           className="rounded-lg"
+            src={image ?? '/github.png'}
             width={1200}
             height={700}
             alt={post.title}
