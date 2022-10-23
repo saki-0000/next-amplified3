@@ -101,8 +101,8 @@ export default function Post({ post, content }) {
         />
       </div>
       <h1 className="mt-12">{post.title}</h1>
-      <p>作成日：{post.createdAt}</p>
-      <p>更新日：{post.updatedAt}</p>
+      <p>作成日：{new Date(post.createdAt).toDateString()}</p>
+      <p>更新日：{new Date(post.updatedAt).toDateString()}</p>
 
       <div dangerouslySetInnerHTML={{ __html: content }}></div>
       <button onClick={handleDelete}>💥 Delete post</button>
