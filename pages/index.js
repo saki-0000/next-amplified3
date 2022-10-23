@@ -9,9 +9,15 @@ Amplify.configure({ ...awsExports, ssr: true });
 export async function getServerSideProps({ req }) {
   const SSR = withSSRContext({ req });
   const response = await SSR.API.graphql({ query: listPosts });
+  const sortedPosts = response.data.listPosts.items.sort((postA, postB) => {
+    return new Date(postA.updatedAt) > new Date(postB.updatedAt)
+      ? -1
+      : 1;
+  });
+
   return {
     props: {
-      posts: response.data.listPosts.items,
+      posts: sortedPosts,
     },
   };
 }
@@ -20,11 +26,11 @@ export default function Home({ posts = [] }) {
   const [images, setImages] = useState([]);
   useEffect(() => {
     posts.map(async (post) => {
-      if(!post.image) {
-        return
+      if (!post.image) {
+        return;
       }
       const image = await Storage.get(post.image);
-      setImages((prev) => ({...prev, [post.id]: image}));
+      setImages((prev) => ({ ...prev, [post.id]: image }));
     });
   }, []);
   return (
