@@ -20,6 +20,9 @@ export default function Home({ posts = [] }) {
   const [images, setImages] = useState([]);
   useEffect(() => {
     posts.map(async (post) => {
+      if(!post.image) {
+        return
+      }
       const image = await Storage.get(post.image);
       setImages((prev) => ({...prev, [post.id]: image}));
     });
