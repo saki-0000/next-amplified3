@@ -12,6 +12,7 @@ import rehypeStringify from "rehype-stringify";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import remarkToc from "remark-toc";
+import rehypeSlug from 'rehype-slug';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -43,6 +44,7 @@ export async function getStaticProps({ params }) {
       heading: "目次",
     })
     .use(remarkRehype)
+    .use(rehypeSlug)
     .use(rehypeStringify)
     .process(data.getPost.content);
   return {
