@@ -7,7 +7,7 @@ const PostCard = ({ post, image }) => {
         <div className="border rounded-lg">
           <Image
            className="rounded-lg"
-            src={image ?? '/github.png'}
+            src={image ?? '/noimage.png'}
             width={1200}
             height={700}
             alt={post.title}
