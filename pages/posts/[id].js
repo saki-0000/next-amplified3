@@ -11,6 +11,7 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import remarkToc from "remark-toc";
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -38,6 +39,9 @@ export async function getStaticProps({ params }) {
 
   const result = await unified()
     .use(remarkParse)
+    .use(remarkToc, {
+      heading: "目次",
+    })
     .use(remarkRehype)
     .use(rehypeStringify)
     .process(data.getPost.content);
