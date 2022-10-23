@@ -5,4 +5,11 @@ type Post
   title: String!
   content: String!
   image: String
+  tags: [Tag] @manyToMany(relationName: "PostTags")
+}
+
+type Tag @model {
+  id: ID!
+  label: String!
+  posts: [Post] @manyToMany(relationName: "PostTags")
 }
