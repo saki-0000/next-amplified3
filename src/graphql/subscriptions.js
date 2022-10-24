@@ -1,69 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTag = /* GraphQL */ `
-  subscription OnCreateTag($filter: ModelSubscriptionTagFilterInput) {
-    onCreateTag(filter: $filter) {
-      id
-      label
-      posts {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateTag = /* GraphQL */ `
-  subscription OnUpdateTag($filter: ModelSubscriptionTagFilterInput) {
-    onUpdateTag(filter: $filter) {
-      id
-      label
-      posts {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteTag = /* GraphQL */ `
-  subscription OnDeleteTag($filter: ModelSubscriptionTagFilterInput) {
-    onDeleteTag(filter: $filter) {
-      id
-      label
-      posts {
-        items {
-          id
-          postID
-          tagID
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost(
     $filter: ModelSubscriptionPostFilterInput
@@ -145,6 +82,81 @@ export const onDeletePost = /* GraphQL */ `
     }
   }
 `;
+export const onCreateTag = /* GraphQL */ `
+  subscription OnCreateTag(
+    $filter: ModelSubscriptionTagFilterInput
+    $owner: String
+  ) {
+    onCreateTag(filter: $filter, owner: $owner) {
+      id
+      label
+      posts {
+        items {
+          id
+          postID
+          tagID
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateTag = /* GraphQL */ `
+  subscription OnUpdateTag(
+    $filter: ModelSubscriptionTagFilterInput
+    $owner: String
+  ) {
+    onUpdateTag(filter: $filter, owner: $owner) {
+      id
+      label
+      posts {
+        items {
+          id
+          postID
+          tagID
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteTag = /* GraphQL */ `
+  subscription OnDeleteTag(
+    $filter: ModelSubscriptionTagFilterInput
+    $owner: String
+  ) {
+    onDeleteTag(filter: $filter, owner: $owner) {
+      id
+      label
+      posts {
+        items {
+          id
+          postID
+          tagID
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
 export const onCreatePostTags = /* GraphQL */ `
   subscription OnCreatePostTags(
     $filter: ModelSubscriptionPostTagsFilterInput
@@ -174,6 +186,7 @@ export const onCreatePostTags = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -210,6 +223,7 @@ export const onUpdatePostTags = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -246,6 +260,7 @@ export const onDeletePostTags = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt

@@ -8,7 +8,9 @@ type Post
   tags: [Tag] @manyToMany(relationName: "PostTags")
 }
 
-type Tag @model {
+type Tag 
+  @model
+  @auth(rules: [{ allow: owner }, { allow: public, operations: [read] }]) {
   id: ID!
   label: String!
   posts: [Post] @manyToMany(relationName: "PostTags")
