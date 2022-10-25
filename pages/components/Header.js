@@ -1,5 +1,6 @@
-import { Image } from '@aws-amplify/ui-react';
-import Link from 'next/link';
+import { Image } from "@aws-amplify/ui-react";
+import { Auth } from "aws-amplify";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -10,24 +11,24 @@ const Header = () => {
             <a className="mr-5 hover:text-gray-400">Home</a>
           </Link>
           <Link href="/posts/create">
-            <a className="mr-5 hover:text-gray-400">
-              新規作成
+            <a className="mr-5 hover:text-gray-400">新規作成</a>
+          </Link>
+        </div>
+        <div className="flex justify-between items-center h-12">
+          <button className="mr-5 hover:text-gray-400" type="button" onClick={() => Auth.signOut()}>
+            Sign out
+          </button>
+          <Link href="https://github.com/saki-0000/my-app" passHref>
+            <a className="mr-5">
+              <Image
+                src="/github-light.png"
+                width={45}
+                height={45}
+                alt="github"
+              />
             </a>
           </Link>
         </div>
-        <Link
-          href="https://github.com/saki-0000/my-app"
-          passHref
-        >
-          <a>
-            <Image
-              src="/github-light.png"
-              width={45}
-              height={45}
-              alt="github"
-            />
-          </a>
-        </Link>
       </div>
     </header>
   );
