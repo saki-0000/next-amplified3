@@ -36,7 +36,7 @@ async function handleCreateTag(event) {
     throw new Error(errors[0].message);
   }
 }
-export default function Home({tags}) {
+export default function TagIndex({tags}) {
   return (
     <div>
       <h1>タグを新規作成</h1>

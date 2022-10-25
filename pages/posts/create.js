@@ -36,7 +36,7 @@ async function handleCreatePost(event) {
   }
 }
 
-function Home({}) {
+function PostCreate({}) {
   return (
     <div className={styles.container}>
       <div class=" dark:bg-gray-800 bg-white py-6 sm:py-8 lg:py-12">
@@ -107,4 +107,4 @@ function Home({}) {
     </div>
   );
 }
-export default withAuthenticator(Home);
+export default withAuthenticator(PostCreate);
