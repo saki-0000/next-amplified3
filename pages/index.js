@@ -9,15 +9,15 @@ Amplify.configure({ ...awsExports, ssr: true });
 export async function getServerSideProps({ req }) {
   const SSR = withSSRContext({ req });
   const response = await SSR.API.graphql({ query: listPosts });
-  const sortedPosts = response.data.listPosts.items.sort((postA, postB) => {
-    return new Date(postA.updatedAt) > new Date(postB.updatedAt)
-      ? -1
-      : 1;
-  });
+  // const sortedPosts = response.data.listPosts.items.sort((postA, postB) => {
+  //   return new Date(postA.updatedAt) > new Date(postB.updatedAt)
+  //     ? -1
+  //     : 1;
+  // });
 
   return {
     props: {
-      posts: sortedPosts,
+      posts: response.data.listPosts.items,
     },
   };
 }
